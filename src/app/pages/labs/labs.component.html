@@ -9,7 +9,7 @@
   <hr />
   <h2>{{'Hola'.repeat(4)}}</h2>
   <p>La suma es 3+3 es {{ 3+3 }}</p>
-  <p>Hola soy {{ name }} y mi edad es {{ age }}</p>
+  <p>Hola soy {{ name() }} y mi edad es {{ age }}</p>
   <hr />
   <!-- <permite asignar mediante property binding []> enlanzando una
     variable a una propiedad de un elemento-->
@@ -36,4 +36,10 @@
   <input type="text" [value]="person.name"(keydown)="keydownHandler($event)">
   <p>(keydown shift + t)</p>
   <input type="text" [value]="person.name"(keydown.shift.t)="clickHandler()">
+    <!-- Signals -->
+  <hr />
+  <h1>Signals</h1>
+  <input type="text" [value]="name()" (change)="changeHandler($event)">
+  <p>name: {{ name() }}</p>
+  <p>name: {{ name() }}</p>
 </div>
