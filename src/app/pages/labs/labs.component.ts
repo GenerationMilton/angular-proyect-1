@@ -22,6 +22,15 @@ export class LabsComponent {
   person={
     name:'Milton',
     age:18,
-    avatar:'https://mighty.tools/mockmind-api/content/cartoon/9.jpg'
+    avatar:'https://w3schools.com/howto/img_avatar.png',
   }
+
+  clickHandler(){
+    alert('Hola')
+  }
+
+  changeHandler(event: Event){
+    console.log(event);
+  }
+
 }
