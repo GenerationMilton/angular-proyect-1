@@ -25,4 +25,15 @@
   <button (dblclick)="clickHandler()">Double me</button>
   <p>(change)</p>
   <input type="number" [value]="person.age" (change)="changeHandler($event)">
+    <!-- <Event binding keydown[]> enlanzando una
+    funcion o metodo en el component.ts-->
+    <p>(change)</p>
+  <input type="text" [value]="person.name" (change)="changeHandler($event)">
+  <p>(keydown)</p>
+  <input type="text" [value]="person.name"(keydown)="keydownHandler($event)">
+
+  <p>(keydown)</p>
+  <input type="text" [value]="person.name"(keydown)="keydownHandler($event)">
+  <p>(keydown shift + t)</p>
+  <input type="text" [value]="person.name"(keydown.shift.t)="clickHandler()">
 </div>
