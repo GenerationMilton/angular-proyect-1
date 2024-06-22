@@ -14,6 +14,14 @@ export class LabsComponent {
     'Crear proyecto',
     'Crear componentes'
   ];
-  name ='milton';
-  age =37
+  name ='Milton';
+  age =37;
+  disable=true;
+  img='https://w3schools.com/howto/img_avatar.png';
+
+  person={
+    name:'Milton',
+    age:18,
+    avatar:'https://mighty.tools/mockmind-api/content/cartoon/9.jpg'
+  }
 }
