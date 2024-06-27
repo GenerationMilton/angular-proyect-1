@@ -29,8 +29,8 @@ export class HomeComponent {
     nonNullable:true,
     validators:[
       Validators.required,
-      Validators.pattern('^\\S.*$'),
-      Validators.minLength(3)
+      //Validators.pattern('^\\S.*$'),
+      //Validators.minLength(3)
 
 
     ]
@@ -49,9 +49,12 @@ export class HomeComponent {
   changeHandler(){
 
     if(this.newTaskCtrl.valid){
-      const value= this.newTaskCtrl.value;
-      this.addTask(value);
-      this.newTaskCtrl.setValue('');
+      const value= this.newTaskCtrl.value.trim();
+      if(value!==''){
+        this.addTask(value);
+        this.newTaskCtrl.setValue('');
+      }
+
     }
 
   }

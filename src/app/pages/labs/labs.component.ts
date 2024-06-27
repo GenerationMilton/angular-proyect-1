@@ -31,6 +31,11 @@ export class LabsComponent {
   //controlador input para form
   colorCtrl = new FormControl();
 
+  //controlador para estilos en angular
+  widthCtrl= new FormControl(50, {
+    nonNullable:true,
+  });
+
   constructor(){
     this.colorCtrl.valueChanges.subscribe(value =>{
       console.log(value);
