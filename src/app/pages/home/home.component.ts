@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task } from './../../models/task.model';
 @Component({
@@ -23,6 +23,20 @@ export class HomeComponent {
     },
 
   ]);
+  //estado filter --estado compuesto
+  filter=signal<'all'|'pending'|'completed'>('all');
+
+  tasksByFilter = computed(()=>{
+    const filter= this.filter();
+    const tasks = this.tasks();
+    if(filter === 'pending'){
+      return tasks.filter(task => !task.completed);
+    }
+    if(filter === 'completed'){
+      return tasks.filter(task => task.completed);
+    }
+    return tasks;
+  })
 
   //instancia de form control con form
   newTaskCtrl= new FormControl('',{
@@ -121,4 +135,9 @@ export class HomeComponent {
       });
     });
   }
+
+  changeFilter(filter:'all'|'pending'|'completed'){
+    this.filter.set(filter);
+  }
+
 }
