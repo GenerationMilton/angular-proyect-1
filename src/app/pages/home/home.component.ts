@@ -88,4 +88,37 @@ export class HomeComponent {
       })
     })
   }
+
+  public updateTaskEditingMode(index: number) {
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        task.editing = false;
+        if (position === index) {
+          return {
+            ...task,
+            editing: true
+          };
+        }
+        return task;
+      });
+    });
+  }
+
+  public updateTaskText(index: number, event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.trim();
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (position === index && task.completed === false) {
+          return {
+            ...task,
+            title: value,
+            editing: false
+          };
+        }
+        alert('Esta tarea ya fue completada');
+        return task;
+      });
+    });
+  }
 }
