@@ -4,5 +4,16 @@
 .box{
   height: 10px;
   display: block;
-  background-color: red;
+  background-color: blue;
+}
+.message-error{
+  background-color: blue;
+  color:white;
+  opacity: 0;
+  transition: all linear .5s;
+
+}
+
+.message-error.show{
+  opacity: 1;
 }

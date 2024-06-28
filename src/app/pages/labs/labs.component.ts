@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
@@ -34,6 +34,15 @@ export class LabsComponent {
   //controlador para estilos en angular
   widthCtrl= new FormControl(50, {
     nonNullable:true,
+  });
+
+  //namectrl con validators
+  nameCtrl = new FormControl('milton',{
+    nonNullable:true,
+    validators:[
+      Validators.required,
+      Validators.minLength(3)
+    ]
   });
 
   constructor(){
