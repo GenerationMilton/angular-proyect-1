@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, Injector, computed, effect, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task } from './../../models/task.model';
 @Component({
@@ -10,19 +10,7 @@ import { Task } from './../../models/task.model';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  tasks=signal<Task[]>([
-    {
-      id: Date.now(),
-      title:'Crear proyecto',
-      completed:false
-    },
-    {
-      id: Date.now(),
-      title:'Crear componentes',
-      completed:false
-    },
-
-  ]);
+  tasks=signal<Task[]>([]);
   //estado filter --estado compuesto
   filter=signal<'all'|'pending'|'completed'>('all');
 
@@ -58,6 +46,29 @@ export class HomeComponent {
   //   input.value='';
   //   this.addTask(newTask);
   // }
+
+injector = inject(Injector)
+  //usando effect de reactividad para el local storage
+// constructor(){
+
+// }
+
+ngOnInit(){
+  const storage= localStorage.getItem('tasks');
+  if(storage){
+    const tasks =JSON.parse(storage);
+    this.tasks.set(tasks);
+  }
+  this.trackTasks();
+}
+//metodo para guardar en el local storage con un injector de dependencias del cora
+trackTasks(){
+  effect(()=>{
+    const tasks =this.tasks();
+    console.log(tasks);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  },{injector: this.injector});
+}
 
   //para usar el taskCtrl
   changeHandler(){
